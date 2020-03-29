@@ -20,6 +20,7 @@ from keras.layers.core import Dense
 from keras.optimizers import SGD
 from keras import backend as K 
 
+#lenet model architechture
 class LeNet:
 	@staticmethod
 	def build(width,height,depth,classes):
@@ -44,6 +45,7 @@ class LeNet:
 
 
 
+#preprocess image by resising aspect ratio and  padding suitably
 def preprocess(image,width,height):
 
 		(h,w)=image.shape[:2]
