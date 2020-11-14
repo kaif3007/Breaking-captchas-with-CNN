@@ -29,6 +29,8 @@ for (i,imagepath) in enumerate(os.listdir("downloads")):
 		#In manuaal threshold we need to supply threshold value,whereas is adaptive threshold we don't
 		thresh=cv2.threshold(gray,0,255,cv2.THRESH_BINARY_INV|cv2.THRESH_OTSU)[1]
 		
+		#thresholding is a requirement of many opencv functions,that's why we do it.
+		
 	
 		#find cotours in image
 		#destroys original image so we pass copy, RETR_EXTERNAL because we only want external contours
