@@ -21,6 +21,8 @@ from keras.optimizers import SGD
 from keras import backend as K 
 
 #lenet model architechture
+#7 layer deep
+
 class LeNet:
 	@staticmethod
 	def build(width,height,depth,classes):
@@ -33,10 +35,13 @@ class LeNet:
 		model.add(Conv2D(20,(5,5),padding="same",input_shape=imageShape))
 		model.add(Activation("relu"))
 		model.add(MaxPooling2D(pool_size=(2,2),strides=(2,2)))
+
 		model.add(Conv2D(50,(5,5),padding="same"))
 		model.add(Activation("relu"))
 		model.add(MaxPooling2D(pool_size=(2,2),strides=(2,2)))
+
 		model.add(Flatten())
+
 		model.add(Dense(500))
 		model.add(Activation("relu"))
 		model.add(Dense(classes))
@@ -69,7 +74,6 @@ labels=[]
 
 for a in os.listdir("dataset"):
 	for b in os.listdir("dataset/"+a):
-
 		path='dataset/'+a+'/'+b
 		image=cv2.imread(path)
 		image=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
@@ -91,7 +95,7 @@ lb=LabelBinarizer().fit(trainY)
 trainY=lb.transform(trainY)
 testY=lb.transform(testY)
 
-
+#we have total 9 classes (1 to 9)
 model=LeNet.build(width=28,height=28,depth=1,classes=9)
 sgd=SGD(lr=0.01)
 model.compile(loss="categorical_crossentropy",optimizer=sgd,metrics=["accuracy"])
